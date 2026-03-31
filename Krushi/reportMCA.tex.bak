@@ -1,0 +1,1441 @@
+\documentclass[a4paper, 12pt, notitlepage]{report}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{fancyheadings}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{longtable}
+\usepackage{graphicx}
+\usepackage{amsmath}
+%\usepackage{supertabular}
+
+
+%\usepackage[utf8]{inputenc}
+
+
+\renewcommand{\baselinestretch}{1.5}
+\begin{document}
+\pagestyle{empty}
+%\begin{center}
+%\textbf{\large{A SEMINAR REPORT}}\\
+%\textbf{ON}
+%\end{center}
+\begin{center}
+\textbf{\LARGE{DOS ATTACK DETECTION IN NETWORK TRAFFIC USING MULTIVARIATE CORRELATION ANALYSIS INFORMATION BASED ON SVM CLASSIFIER }}\\
+\end{center}
+
+%\begin{center}
+%\textbf{\LARGE{}}
+%\end{center}
+\begin{center}
+\end{center}
+\begin{center}
+\textbf{A DISSERTATION SUBMITTED TO\\
+SOLAPUR UNIVERSITY\\
+For The Award of
+}\\
+\textbf{MASTER DEGREE IN\\
+COMPUTER SCIENCE AND ENGINEERING
+}
+\end{center}
+
+%\begin{center}
+%\textbf{In Partial Fulfillment of the Requirement for the Award of}
+%\end{center}
+
+%\begin{center}
+%\textbf{MASTER DEGREE IN COMPUTER SCIENCE ENGINEERING}
+%\end{center}
+\begin{center}
+\textbf{BY}
+\end{center}
+\begin{center}
+\textbf{Miss.PRAJAKTA P.SOLANKAR}\\
+\textbf{(PRN:1300002670)}
+\end{center}
+\begin{center}
+\textbf{
+UNDER THE GUIDANCE OF\\
+Prof. SUBHASH V. PINGALE}
+\end{center}
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.2\textwidth]{dist}
+\end{figure}
+\begin{center}
+\textbf{DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING\\
+SKN SINHGAD COLLEGE OF ENGINEERING\\
+KORTI, PANDHARPUR-413 304\\
+2015-2016}
+\end{center}
+\begin{center}
+\textbf{AFFILIATED TO}
+\end{center}
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.2\textwidth]{1}
+\end{figure}
+\begin{center}
+\textbf{SOLAPUR UNIVERSITY}
+\end{center}
+
+\newpage
+
+\begin{center}
+{\LARGE DECLARATION}
+\end{center}
+
+
+I hereby declare that the dissertation entitled “DOS attack detection in Network traffic using Multivariate Correlation Analysis information based on SVM Classifier” is completed and written by me for the award of MASTER DEGREE IN COMPUTER SCIENCE AND ENGINEERING, is an authentic record of my own work under the guidance of Prof. Subhash V. Pingale and Prof. Ranjeetsingh B. Parihar, at the Sinhgad College of Engineering, Korti, Pandharpur.I further declare that the work reported in this project has not been submitted and will not be submitted, either in part or in full,for the award of any other degree or diploma in this institute or any other institute or university.
+\newline
+
+I have taken care in all respect to honour the intellectual property right and have acknowledged the contribution of others for using them in academic purpose and further declare that in case of any violation of intellectual property right or copyright I, as a candidate, will be fully responsible for the same. My supervisor should not be held responsible for full or partial violation of copyright or intellectual property right.
+\begin{flushright}
+Prajakta P. Solankar\\
+\end{flushright}
+Place: Pandharpur\\
+Date :
+
+\newpage
+
+
+\begin{center}
+\textbf{SKN SINHGAD COLLEGE OF ENGINEERING\\
+DEPARTMENT OF COMPUTER SCIENCE \& ENGINEERING\\
+KORTI, PANDHARPUR-413 304}
+\end{center}
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.2\textwidth]{sps}
+\end{figure}
+\begin{center}
+\textbf{\Huge CERTIFICATE}
+\end{center}
+\begin{center}
+This is certify that the project entitled\\
+\end{center}
+\begin{center}
+\textbf{\LARGE{DOS attack detection in Network traffic using Multivariate Correlation Analysis information based on SVM Classifier}}\\
+\end{center}
+
+%\begin{center}
+%\textbf{\LARGE{}}
+%\end{center}
+
+\begin{center}
+submitted by
+\end{center}
+\begin{center}
+\textbf{Miss.Prajakta P.Solankar\\
+(PRN:1300002670)}
+\end{center}
+is a record of bonafide work carried out by her, in the partial fulfilment of the
+requirement for the award of Degree of Master of Engineering (Computer Science \& Engineering)
+at SKN SINHGAD COLLEGE OF ENGINEERING, KORTI, PANDHARPUR
+under the University of Solapur. This work is done during year 2015-2016, under
+our guidance.\\
+%\begin{flushleft}
+%\end{flushleft}
+\newline
+%\newline
+%\newline
+%\newline
+Prof. Subhash V. Pingale\hspace{200pt}Prof. Subhash V. Pingale
+\newline
+\hspace*{8mm}(Project Guide)\hspace{245pt}(P.G. Coordinator)
+%\newline
+\newline
+\newline
+%\newline
+Prof. Abhijit A. Rajguru \hspace{200pt}Dr. Kailash J. Karande\\
+\hspace*{3mm}(HOD, Dept. of CSE) \hspace{245pt}(Principal)\\
+\newline
+\textbf{External Examiner Name and Sign:}\\
+\textbf{Place: Pandharpur }\\
+\textbf{Date:      \hspace{10pt} / \hspace{10pt}    / }\\
+\newpage
+\begin{center}
+{\LARGE Acknowledgement}
+\end{center}
+
+This is a great pleasure and immense satisfaction to express my deepest sense of gratitude and thanks to everyone who has directly or indirectly helped me in completing my Dissertation work successfully.
+I express my gratitude towards project guide Prof.S.V Pingale and Prof. A.A Rajguru, Head, Department of Computer science and Engineering, Place: SKN Sinhgad College of Engineering, Korti.Who guided and encouraged me in completing the Dissertation work. I would like to thanks our Principal Kailash J. Karande for allowing us to pursue my project in this institute.
+
+I would like to express my heartfelt gratitude to Prof. Ranjeetsingh Parihar also who acted as a source of inspiration in all spheres of my dissertation phase and necessarily providing all resources along with a great platform to accomplish my target.Besides his entire busy schedule Sir always gave me enough time to discuss and sort out my queries. With whatever little progress I made, Sir appreciated and constantly guided me towards the next optimum level in the dissertation phase.
+
+No words are sufficient to express my gratitude to my family for their unwavering encouragement. I also thank all friends for being a constant source of my support.
+
+
+\begin{flushright}
+Solankar Prajakta Pandurang\\
+\end{flushright}
+
+\newpage
+%\begin{abstract}
+\begin{center}
+{\LARGE Abstract}
+\end{center}
+Denial of service attack (DoS) is critical threat to the internet and causes serious impact on the computing systems such as database server, web server, cloud computing server etc. DoS attack stops legitimate user from accessing online services. Therefore effective detection of DoS attack is necessary to increase the efficiency of server. This present Multivariate correlation analysis (MCA) for network traffic characterization overcomes the problem of DoS attack. MCA uses triangle area technique for extracting correlations between observed network traffic. Triangle area based technique is proposed to speed up the MCA process. Then SVM (Support Vector Machine) based classification technique used for attack classification using the triangle area based multivariate correlation information. The normalization method presented to increase the detection rate of DoS attack.
+
+%\end{abstract}
+
+\tableofcontents
+\listoffigures
+\listoftables
+\clearpage
+\setcounter{page}{1}
+
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{\bfseries DOS attack detection in Network traffic using Multivariate Correlation Analysis information based on SVM Classifier}
+\lfoot{ SKNSCOE, KORTI, PANDHARPUR}
+\cfoot{\thepage}
+\rfoot{ Dept. of Computer Science \& Engg.}
+\renewcommand
+\headrulewidth{0.4pt}
+\renewcommand
+\footrulewidth{0.4pt}
+
+%%%%%%%%%% MAIN TEXT STARTS HERE %%%%%%%%%%
+
+%%%%%%%%%%  CHAPTER 1 %%%%%%%%%%
+
+
+\chapter{Introduction}
+\section{General Introduction}
+In recent days network technology is developing rapidly and the network security is important issue. Amongst various security threats that have evolved lately, Denial of service (DoS) attack is most destructive according to the security experts. A Denial of Service attack is a method of blocking service from its intended users. The severity of this attack varies with the magnitude of loss and the duration of attack. DoS attacks could be extended to Distributed Denial of Service (DDoS) attacks which does damage in a massive scale. DDoS consists of many systems that work together to launch a much powerful attack [1].
+
+\section{Problem statement}
+Today’s world is facing problem of Denial-of-Service (DoS) attack in internet, organization, infrastructure etc. Therefore there is need to detect DoS attack.
+The problem is detection of Denial-of-Service attack in network traffic. Hence work focuses on
+\begin{enumerate}
+\item To monitor the network traffic for generating basic features and find out correlations between two distinct features from the generated features using multivariate correlation analysis.
+\item To classify Denial of Service attack from legitimate traffic.
+
+\end{enumerate}
+
+\section{Objectives}
+\begin{enumerate}
+\item To provide detection against denial-of-service attack.
+\item To use the most sophisticated technique for detection of denial of service attacks.
+\item To improve the performance of detection system.
+\end{enumerate}
+
+\section{Scope}
+
+\begin{enumerate}
+\item Increase the efficiency of computing systems by effective detection.
+\item Effective detection of DoS attack makes legitimate user to access the online services and also provide the solution to improve performance of server.
+
+\end{enumerate}
+
+\section{Dissertation outline}
+%
+
+In next chapter, I have presented the review of literature surveyed during the completion of this dissertation.
+Chapter 3 and 4 are about Denial of service attack and Intrusion detection system respectively.
+Chapter 5 consists of system architecture.chapter 6 consists of kdd dataset description and chapter 7 contains methodology.
+ Rest part focusses on the system design,Implementation and evaluation.
+ Out of which Chapter 8 is about requirement specifications, data flow and UML diagrams.Implementation part is in the chapter 9.
+  Chapter 10 presents results and evaluation.Chapter 11 concludes this report.At the end list of publications done on this dissertation work.
+
+%%%%%%%%%%  CHAPTER 2 %%%%%%%%%%
+\chapter{Literature Survey}
+%
+In today’s world, in the literature of computer network, the Security has become the one of the critical issue.
+Day by day more and more attacks are launched. The tools available for attacking are more powerful and are available freely on the Internet.
+Therefore it becomes necessary to provide more powerful tools for ensuring the security.
+Traditional IDS which was proposed in 80’s was the best solution for security at that time.
+But now it is become more necessary to improve the ability of IDS to detect more and more attacks.
+% In addition to intrusion detection IDS should take some decisions by its own to prevent hacking of the data.
+ %Today’s IDS also support this feature so they are known as Intrusion Detection Systems.
+
+	The security experts are trying to achieve more security by improving the Intrusion Detection System in many ways.
+Basically, there are two types of Intrusion Detection System; Network based Intrusion Detection system which detects
+ unusual traffic flows and Host-based Intrusion Detection System which are responsible for monitoring single machine events
+  for malicious activities.The literature consists of various methods for intrusion classification. I surveyed following methods:	
+
+\section{surveyed classification techniques}
+
+\subsection{K-NN (k-Nearest Neighbor)}
+
+K-nearest neighbor is one of the simple classification techniques. It determines the distance between data points on
+input vectors and unlabeled data points are assigned to its nearest neighbor. In this technique k is important parameter.
+ When the value of k is 1, then the object is assigned to class of its nearest neighbor. If value of k is large,
+ then it takes more time for prediction and affects the accuracy by reducing effect of noise.
+ It requires large storage for larger dataset [4].
+
+The advantages are simple, analytically tractable. Disadvantages are large storage requirements, lazy learner.
+In the k-NN underlying structure of the data is not identified.
+
+\subsection{SVM(support vector machine)}
+The support vector machine is used for classification and prediction. It is supervised learning algorithm.
+In this method hyper plane is used to separate data points. It is binary classifier so it separates data points into two classes +1 and -1.
+The normal data and suspicious data is represented by +1 and -1 respectively[5]. The line which separates dataset into two classes
+is separating hyperplane and points closest to the hyperplane are support vectors. The advantages are easy to interpret results, efficient.
+In case of two object classification, it gets superior performance.
+It handles only binary classification is the drawback of support vector machine.
+
+\subsection{Naive Bayes}
+
+Naive bayes is based on probability. According to membership probability it predicts the class.
+It analyzes the relation between dependent and independent variable to derive the conditional probability.
+ The bayes theorem is:
+
+    P (H/X) = P(X/H).P (H)/P(X)
+
+Where, X represents the data record and H is hypothesis. The prior probability is represented by P (H).The P(X/H) and P (H/X)
+are the posterior probability of X and H respectively, conditioned on H and X respectively [4].
+
+The advantage is easy to implement. It may be employed on larger data points but increases the time complexity.
+ The assumptions of conditional independence, need of probability data are disadvantages of this technique.
+
+\subsection{Decision Tree}
+It is one of the commonly used classification techniques.  Binary classification tree is created in decision tree. Each node in tree represents binary predicate on one attribute. One branch in the tree corresponds to positive instance of predicate and other corresponds to negative instance of the predicate. There are various decision tree algorithms in the literature.
+
+Domain knowledge is not required for tree construction is advantage of decision tree. The data mining expert with little knowledge of networking can construct decision tree models. Another advantage is learned results are easy for understanding.
+Disadvantages are decision tree models in case of numeric dataset are complex, decision tree algorithms are unstable [11].
+
+\subsection{Multilayer Perceptron}
+A Multilayer perceptron maps sets of input data onto a set of appropriate output. An MLP consists of multiple
+layers of nodes in a directed graph, with each layer fully connected to the next one. Except for the input nodes,
+each node is a neuron with a nonlinear activation function[31].
+
+\subsection{ZeroR}
+
+ZeroR is the simplest classification method which relies on the target and ignores all predictors .ZeroR classifier simply predicts the majority category. Although there is no predictability power in ZeroR, it is useful for determining a baseline performance as a benchmark for other classification methods. Algorithm Construct a frequency table for the target and select its most frequent value.There is nothing to be said about the predictors contribution to the model because ZeroR does not use any of them.The ZeroR only predicts the majority class correctly[6]. \\
+
+%\textbf{RESULTS AND DISCUSSION}\\
+%We used Kddcup99 dataset[34]to check performance of various classification techniques. Dataset contains smurf, Neptune, teardrop, pod etc records of dos attack. The kdd dataset is modified with 110627 instances and 13 attributes. We used weka tool to compare various classification techniques. For this purpose dataset is used in ARFF format. The ARFF means attribure relation file format.
+
+%\begin{figure}[h!]
+%\centering
+ %Requires \usepackage{graphicx}
+%\includegraphics[width=1.0\textwidth]{datasetfeatures}
+%\caption{kddcup99 dataset features}
+%\end{figure}
+
+% For this purpose kdd cup99 dataset features [32][33]are used. The kddcup99 dataset is in following format as shown in figure 2.1 and 2.2.  The fig.2.3 Shows various classification techniques result in weka tool.All the technique have better results greater than 98 percent .The SVM and K-NN having higher result than naive bayes and decision tree. Problem with naive bayes is need of probability data.K-NN takes more time than SVM.K-NN is lazy learner.
+
+
+%\begin{figure}[h!]
+%\centering
+ %Requires \usepackage{graphicx}
+%\includegraphics[width=0.7\textwidth]{featurevalues}
+%\caption{kddcup99 dataset feature values}
+%\end{figure}
+
+
+%\begin{figure}[h!]
+%\centering
+ %Requires \usepackage{graphicx}
+%\includegraphics[width=0.7\textwidth]{diff}
+%\caption{Classification techniques result in weka tool }
+%\end{figure}
+
+%\newpage
+\section{Related work}
+Christos Douligeris et. al. described DDoS attack , architecture of DDoS attack and also various mechanisms and classification methods. They showed different defense mechanism for the DDoS attack problem. Various DDoS attack tools are also described in this paper[13].In [14] traffic flooding attack detection is performed by SNMP MIB using SVM.The SNMP MIB statistical data is taken from SNMP agents. For classification of attack, support vector machine (SVM) is used. \\
+
+The author Arman Tajbakhsh et. al. used data mining methods for detecting intrusion. They used Association based classification which is the core part of Intrusion detection system. They used Fuzzy Association rules for building classifiers.Kddcup99 dataset is used to evaluate the performance of the system [15]. In [16] real time intrusion detection system is developed. In this paper principle component analysis method is used for preprocessing of the data. To find the hidden correlation MDM (Mahalnobis distance Map) is used. Dimitris Gavrilis described DDos attack behavior using the statistical descriptors. They used Radial Basis function Neural Network for classification purpose. The author trained RBF-NN and evaluated in two experiments. In the first experiment they set up 100 Mbps network and DDoS attack was launched in the University of Patras central library on the main web server in the second experiment [17].\\
+
+In [18] intrusion detection system is developed and used 19 critical features by using the gradually feature removal method. They developed efficient classifier using the combination of support vector machine, ant colony technique and clustering algorithm. They performed experiment using the kddcup99 dataset. They used k-means to reduce the dataset and which is the powerful method in the literature. Shuyuan jin,Danial so Yeung and Xizhao Wang [19] designed covariance matrix based method for mining multivariate correlation of sequential sample. They performed experiments using decision tree and threshold method. S.Yu et. al.[20] discriminated DDoS attack from the flash crowd by using the flow correlation coefficient.\\
+
+ In [21] computer attacks are detected using the Support vector machine and Independent component analysis (ICA). They used ICA for extracting the features from the multivariate data. Support vector machine classifies data in two categories.The adaboost algorithm for network intrusion detection is proposed in this work. Adaboost algorithm is machine learning algorithm in which decision stumps are used as weak classifier and provided decision rules for categorical and continuous features. They created strong classifier by combination of weak classifiers for categorical and continuous features. Strong classifier is used to classify an attack [22]. This work analyzed different methods of attribute normalization for preprocessing the data during anomaly intrusion detection. They evaluated performance with anomaly detection algorithms, PCA (principle component analysis), k-NN (K-Nearest Neighbor) and one class SVM (support vector machine) [23].\\
+
+The author proposed a triangle area based nearest neighbor approach for detecting intrusions. In this paper they presented k-means is used as clustering method to find the center clusters for each category. They developed triangle areas. Finally they used k-NN classifier for classification [24]. In the proposed work of Euclidean distance map based multivariate correlation analysis to detect denial of service attack. The Euclidean distance technique used to extract the correlative information from the original feature space of an observed data object [25]. Jin et al. discussed the effects of multivariate correlation analysis for detection of DDoS attacks. For detecting flooding attacks they proposed covariance analysis model. The method differentiates the traffic as attack or normal. They verified the effect of multivariate correlation analysis using covariance model [26]. The machine learning techniques radial basis function neural network (RBFNN) and support vector machine (SVM) proposed to solve the problem of denial of service attacks which is serious threat to the internet.  They evaluated the performance of both the methods for binary class and multi class classification [27]. Venkata et al. said that feature selection also necessary to improve the efficiency. In this paper they proposed Information Gain (IG) and Triangle area based KNN for selecting feature. They combined Greedy K-means clustering algorithm and support vector machine (SVM) classifier for detecting network attacks [28].
+
+
+
+%%%%%%%%%%  CHAPTER 3 %%%%%%%%%%
+\chapter{Denial of Service Attack }
+
+\textbf{Denial of Service Attack:}\\
+\\
+In recent years internet has been affected by Denial of service attack. Denial of service attack is caused due to availability issue. The availability of data is important while running a business and huge losses may occur if information is not available for longer time because of attack against computers. Such attacks are known as Denial of Service. The purpose of denial of service attack is to prevent or disrupt the services provided by victim. The DoS attack stops legitimate user from accessing services provided by internet, victim which can be any host or router on network or stops  access to network resource.\\
+\\
+Denial of service (DoS) attack is one type of aggressive and menacing intrusive behavior to online servers.
+DoS attacks severely degrade the availability of a victim, which can be a host, a router, or an entire network.
+They impose intensive computation tasks to the victim by exploiting its system vulnerability or flooding it with huge amount of useless packets.
+The victim can be forced out of service from a few minutes to even several days. This causes serious damages to the services running on the victim. Therefore, effective detection of DoS attacks is essential to the protection of online services. Work on DoS attack detection mainly focuses on the development of network-based detection mechanisms. Detection systems based on these mechanisms monitor traffic transmitting over the protected networks[2].
+
+\section{Background}
+
+DDOS Attack is most dangerous attack on the internet in today’s era. In the summer of 1999, the Computer Incident Advisory Capability (CIAC) reported the first Distributed DOS attack incident and since then most of the Dos attacks have been distributed in nature. Many DDOS flooding attacks had been launched against many different organizations since the summer of 1999.Most of the DDOS attacks launched that tried to make the victim services unavailable leading to revenue losses and increased costs of mitigating the attacks and restoring the services [8].
+In February 2000, Yahoo has experienced DDoS attack. Citi and other U.S. financial institutions also experienced DDoS attacks which were intended to disrupt consumer online banking services in 2012. HSBC servers affected a number of HSBC websites around the world because of Denial of service attack on October 2012.Even in early 2013 and 2014 also DDoS has happened. The following figure 3.1 shows denial of service attack happened on bank. The attacker sends command for his bots to attack a bank. Thousands of requests are sent to bank website simultaneously. Then bank is flooded with number of requests and can’t operate effectively.\\
+
+
+\begin{figure}[h!]
+\centering
+ %Requires \usepackage{graphicx}
+\includegraphics[width=0.7\textwidth]{b1}\\
+\caption{Denial of service attack on bank }
+\end{figure}
+
+Denial of service attack is critical threat to the internet and affects computing systems such as web server, database server etc.  An internet user performs activities like emailing, online banking and news, general browsing etc. Denial of service attack prevents the user from accessing these services. DoS attack degrades the performance of server by flooding the ICMP traffic as discussed below in the smurf attack. So detecting denial of service attack is necessary.
+
+
+Denial-of-service attack can be simply explained with the analogy of the telephone network:
+A telephone number can be easily attacked by calling to that number by a number of people simultaneously, which in turn do not give access to a legitimate caller. A denial-of-service attack is a malignant attempt by a single person or a group of persons to disrupt an online service. Denial-of-service attacks have caused huge financial losses in recent years in the Internet. Denial-of-Service attacks affected businesses on websites like eBay.com, amazon.com, yahoo.com, ZDNet.com, Buy.com and a lot of other similar websites. Most of the attacks that come under a denial-of-service are bandwidth attacks. The attackers generate a huge traffic in the network and overload the network with unwanted or bogus Internet packets. Detection of bandwidth attack is difficult when the detector is far from the victim. But it becomes easier when the detector is placed near to the victim [7].When DoS attack occurs then there is no way to fix the problem or victim not able to provide its services on the internet.DoS attack tools are easily available on the internet, so any computer user can perform DoS attack by using tools like Trinoo. Some companies also perform DoS attack because of competition in market. There are various forms of DoS attacks in the literature according to several parameters: Smurf attack, back, land, Neptune, teardrop attack etc are DoS type attacks.
+
+\begin{figure}[h!]
+\centering
+ %Requires \usepackage{graphicx}
+\includegraphics[width=0.7\textwidth]{dos}\\
+\caption{Architecture of DDos attack  }
+\end{figure}
+
+
+The figure 3.2 shows distributed denial of service attack. The dotted line represents control messages and without dotted line represents attack traffic [3].
+
+In figure 3.2 architecture has all traffic generated from one single source.In this scenario, the attack traffic coming from multiple sources is directed to the same victim. This sophisticated attack scheme helps the real attacker hide from being traced and makes defense become more complicated [3].
+
+\section{Types of DoS attacks}
+There are various types of denial of service attack. These are described below:
+
+\subsection{smurf attack}
+
+In smurf attack, the attacker uses ICMP echo request packets to perform an attack.
+ Attacker sends these packets to intermediate device.
+ ICMP packets contain source address same as victim’s IP address and intermediate devices address as destination address.
+ Then all the intermediate hosts receive ICMP requests and sends replies to victim’s address.
+ Because of this victim address gets flooded with these replies and consumes bandwidth of network.
+  Mostly router and OS are affected by this type of attack.
+
+\subsection{Land attack}
+
+In Land attack; the attacker sends TCP SYN packets to the victim’s address. These packets contain source and destination address same as victim.
+So victim machine go into loop because it replies to itself.
+
+\subsection{Teardrop attack}
+
+This type of attack uses larger data packets. TCP/IP breaks
+them into fragments that are assembled on the receiving host. The attacker manipulates the packets as they are sent so that they overlap each other.
+This can cause the intended victim to crash as it tries to re-assemble the packets.
+In Teardrop attack attacker sends packets in fragments with overlapping offset value.
+When teardrop attack runs against a machine, it will crash or reboot. On windows machine user will experience blue screen of death.
+
+\subsection{Back attack}
+
+The back attack is launched against an apache web server, which is flooded with request containing
+a large number of front slash characters (/) in URL descriptions.
+When server tries to process all these requests then it becomes unable to process other legitimate requests and
+ hence it denies a service to its customers.
+
+\subsection{POD(ping of death) attack}
+
+Ping of Death is a type of Denial of Service (DoS) attack in which an attacker attempts to crash, destabilize, or freeze
+the targeted computer or service by sending malformed or oversized packets using a simple ping command.
+Recently, a new type of PoD attack has become popular. This attack, commonly known as a Ping flood,
+ the targeted system is hit with ICMP packets sent rapidly via ping without waiting for replies.\\
+
+The size of a correctly-formed IPv4 packet including the IP header is 65,535 bytes, including a total payload size of 84 bytes.
+Many historical computer systems simply could not handle larger packets, and would crash if they received one.
+Since sending a ping packet larger than 65,535 bytes violates the Internet Protocol, attackers would generally
+send malformed packets in fragments. When the target system attempts to reassemble the fragments and ends up with
+an oversized packet, memory overflow could occur and lead to various system problems including crash.\\
+
+In early implementations of TCP/IP, this bug is easy to exploit and can affect a wide variety of systems
+including Unix, Linux, Mac, Windows, and peripheral devices. As systems began filtering out pings of death through firewalls
+ and other detection methods, a different kind of ping attack known as ping flooding later appeared, which floods the victim
+ with so many ping requests that normal traffic fails to reach the system (a basic denial-of-service attack).
+
+\subsection{Neptune attack}
+
+Neptune attacks can make memory resources too
+full for a victim by sending a TCP packet
+requesting to initiate a TCP session. This packet
+is part of a three-way handshake that is needed to
+establish a TCP connection between two hosts.
+The SYN flag on this packet is set to indicate
+that a new connection is to be established. This
+packet includes a spoofed source address, such
+that the victim is not able to finish the handshake
+but had allocated an amount of system memory
+for this connection. After sending many of these
+packets, the victim eventually runs out of
+memory resources[10].
+
+
+\section{Attacking tools}
+
+Over time, DoS tools have evolved to support more powerful attack methods. In view of attacker's resources versus target impact,
+ this presents an overall transition in favour of the attacking side. First association to service disruption are massive OSI layer 4 DDoS attacks,
+  which utilize the basic concept of accumulating large quantity of attacking machines in order to overwhelm a single target server with requests.
+   One of popular tools in this category is Low Orbit Ion Cannon (LOIC),has the basic flooding capability using TCP, UDP and HTTP methods.
+    Problem with utilizing LOIC is not only the implicit need for a large quantity of machines, but also the ease of filtering it's traffic and
+     tracing back the attacker.\\
+     \\
+     XOIC is another nice DOS attacking tool. It performs a DOS attack on any server with an IP address,
+     a user-selected port, and a user-selected protocol. Developers of XOIC claim that XOIC is more powerful than LOIC in many ways.
+      Like LOIC, it comes with an easy-to-use GUI, so a beginner can easily use this tool to perform attacks on other websites or servers.
+      Tor’s Hammer is also nice dos attacking tool.
+      Panther tool can be used to flood a victim’s network with UDP packets.Land and LaTierra tool can be used for IP spoofing and opening
+      TCP connections.
+
+There are also other tools shown below which performs dos attack.
+\begin{enumerate}
+\item Trinoo
+\item Tribal Flood Network
+\item Stacheldraht
+\item	Shaft
+\item MStream
+\item Tribal Flood Network 2000
+\end{enumerate}
+
+%%%%%%%%%%  CHAPTER 4 %%%%%%%%%%
+\chapter{Intrusion detection system}
+%
+\section{Intrusion Detection}
+An intrusion detection system is a software tool used to detect unauthorized access to a computer
+system or network. An intrusion detection system is capable of detecting all types of malicious
+network traffic and computer usage. This includes network attacks against vulnerable services, data driven attacks on applications,
+ host-based attacks such as privilege escalation, unauthorized logins and access to sensitive files and malware.
+ An intrusion detection system monitors traffic in a network in promiscuous mode, very much like a network sniffer.
+ The network packets that are collected are analyzed for rule violations by a pattern recognition algorithm.
+ When rule violations are detected, the intrusion detection system alerts the administrator[9].
+ In now days there are many algorithms available
+ to provide detection against various types of attacks such as denial of service attack,distributed denial of service attack.\\
+
+Intrusion is some time also called as hacker or cracker attempting to break into or misuse your system.
+ While introducing the concept of intrusion detection in 1980, defined an intrusion attempt or a threat to be
+ the potential possibility of a deliberate unauthorized attempt to
+
+\begin{enumerate}
+\item access information,
+\item manipulate information
+\item Render a system unreliable or unusable.
+\end{enumerate}
+Intrusion detection systems do exactly as the name suggests: they detect possible intrusions. More specifically, IDS tools aim to detect computer attacks and/or computer misuse, and to alert the proper individuals upon detection.
+An intrusion detection system (IDS) inspects all inbound and outbound network activity and identifies suspicious patterns that may indicate a network or system attack from someone attempting to break into or compromise a system.
+
+\begin{figure}[h!]
+\centering
+ %Requires \usepackage{graphicx}
+\includegraphics[width=0.75\textwidth]{IDS}\\
+\caption{Intrusion Detection System in network}
+\end{figure}
+
+Basically intrusion detection system consists of two types:
+\begin{enumerate}
+\item NIDS(Network Intrusion Detection System)
+\item HIDS(Host Intrusion Detection System)
+
+\end{enumerate}
+
+Both of them has their own prone and cons. let us discuss both of them one by one.
+\section{Intrusion detection system}
+
+\subsection{Network Intrusion Detection System}
+A network IDS (NIDS) monitors all traffic on the network segment that it is placed on.
+ This is generally accomplished by placing the network interface card in promiscuous mode to capture all network traffic that crosses its network segment.
+ Network traffic on other segments can't be monitored unless the traffic is directed to the NIDS promiscuous interface.
+ Network Intrusion Detection involves looking at the packets on the network as they pass by the NIDS.
+ The NIDS can only see the packets that are carried on the network segment it’s attached to.
+
+\subsection{Host Intrusion Detection System}
+
+A Host IDS (HIDS) uses a piece or pieces of software on the system to be monitored. The loaded software uses log files and/or the system's auditing agents as sources of data. In contrast, a NIDS monitors the traffic on its network segment as a data source. Host based intrusion detection involves not only looking at the network traffic in and out of a single computer, but also checking the integrity of your system files and watching for suspicious processes. To get complete coverage at your network with HIDS, you must load the software on every computer. Host based Intrusion Detection is much more effective in detecting insider attacks than is NIDS. Host Intrusion Detection Systems are run on individual hosts or devices on the network. A HIDS monitors the inbound and outbound packets from the device only and will alert the user or administrator of suspicious activity is detected.
+
+\subsection{HIDS vs NIDS}
+\begin{itemize}
+{
+\item  Unauthorized outsider access:\\
+                                   When an unauthorized user logs in successfully, or attempts to log in, they are best tracked with host-based IDS. However, detecting the unauthorized user before their log on attempt is best accomplished with network-based IDS.
+\item  Denial of service:\\
+                                   These attacks from outside the network single out network resources for abuse or overload. The packets that initiate/carry these attacks can best be noticed with use of network-based IDS.
+ \item  Traffic monitors:\\
+                                   NIDS monitors all traffic on a network segment and can detect intrusion that crosses a specific network segment. It will not see traffic that passes between LAN computers. Whereas a HIDS examines all traffic and activity for a particular machine and can detect system log files as well as inbound and outbound packets. Each system is requiring its own IDS.
+
+}\end{itemize}
+\section{Network Attack Detection Techniques}
+
+\subsection{Misuse based detection technique}
+
+Misuse based detection mechanism monitors the network activities and uses the previously stored attack signature for attack detection. To keep the signature database updated is complicated task because we have to manually create the signatures. So generally researchers use anomaly detection mechanism for attack detection[12].The fig.4.2 shows misuse
+detection technique.
+
+\begin{figure}[h!]
+\centering
+ %Requires \usepackage{graphicx}
+\includegraphics[width=0.7\textwidth]{Misuse}\\
+\caption{Misuse detection technique}
+\end{figure}
+
+\subsection{ Anomaly based detection technique}
+
+In anomaly based detection mechanism not necessary to keep the signature database instead it creates the profiles of the legitimate traffic. In this technique profile of legitimate traffic are developed using techniques statistical analysis, machine learning and data mining etc.[12]. The figure 4.3 shows anomaly detection technique.
+
+\begin{figure}[h!]
+\centering
+ %Requires \usepackage{graphicx}
+\includegraphics[width=0.7\textwidth]{Anomaly}\\
+\caption{Anomaly detection technique}
+\end{figure}
+
+%%%%%%%%%%  CHAPTER 5  %%%%%%%%%%
+\chapter{System Architecture}
+%
+The system consists of two main phases i.e. training phase and test phase. In the training phase triangular area determination is performed and test phase consists of classification of attack. The figure 5.1 shows framework for proposed DoS attack detection system.
+
+\begin{figure}[h!]
+\centering
+ %Requires \usepackage{graphicx}
+\includegraphics[width=0.8\textwidth]{framef}\\
+\caption{Framework for Denial of Service attack detection}
+\end{figure}
+Firstly kddcup99 dataset network features are collected and then preprocessing on the dataset by using the feature selection.Normalization method is used to imrove accuracy.
+
+Kddcup99 dataset is used as input to the proposed system which consists of different types of records: normal, smurf, teardrop, Neptune etc. There are 41 features in the dataset[32][33]. The features of dataset are duration, protocol type, service, source address, destination address, wrong fragment, count, urgent etc. \\
+
+In feature selection only useful features are selected. we selected relevant features for dos attack classification. Feature selection is the preprocessing of the data. we selected protocol, source bytes,wrong fragment,count,diff srv rate,srv diff host rate,dst host same srv rate, dst host serror rate.\\
+
+Triangle areas are used for extracting the correlation information between the features of traffic record and extracted correlations are stored
+ in the triangle area maps (TAM). Multivariate correlation analysis is for characterization of network traffic.Triangle area technique is used
+ to speed up the MCA (multivariate correlation analysis) process.The MCA method has several advantages, the proposed triangle area based
+  MCA is not vulnerable to linear change of all the features. It performs characterization of individual network traffic.
+  Geometrical structure analysis reveals the correlations between two distinct features.The results of Triangle area based MCA (multivariate correlation analysis) is given to
+   the last step i.e. attack detection step for decision making. 	\\
+		
+The last step is to detect attack. In this step multivariate correlation analysis is applied to the SVM classification technique
+ for making decision. The attack detection phase consists of “training set” and “test set”. These sets are used while making the
+ decision about legitimate(normal) and dos type attack records. SVM uses the line to separate the dataset known as separating hyperplane.
+ Hyperplane is decision boundary in which one side belongs to one class and other side belongs to another class.
+  The points closest to the separating hyperplane are support vectors. To find the point closest to the hyperplane
+  i.e. support vectors and the hyperplane must be far away from these support vectors. This is called as margin.
+  The SVM classification algorithm makes decision and gives result of attack type records and normal records.
+  In SVM classification SMO function is used for speed up the process.The SVM and SMO is described in the chapter methodology.
+
+\chapter{kddcup99Dataset Description}
+
+\begin{center}
+\begin{longtable}{|l|l|l|}
+\caption{kddcup99 dataset decription}
+\label{kddcup99 dataset feature_description} \\
+
+\hline \multicolumn{1}{|c|}{\textbf{No.}} & \multicolumn{1}{c|}{\textbf{Feature}} & \multicolumn{1}{c|}{\textbf{Description}} \\ \hline
+\endfirsthead
+
+\multicolumn{3}{c}%
+{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\hline \multicolumn{1}{|c|}{\textbf{No.}} &
+\multicolumn{1}{c|}{\textbf{Feature}}  &
+\multicolumn{1}{c|}{\textbf{Description}} \\ \hline
+\endhead
+
+\hline \multicolumn{3}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline \hline
+\endlastfoot
+
+1& Duration &Connection duration \\
+\hline
+2& Protocol Type &It describes type of protocol.eg.icmp, udp, tcp\\
+\hline
+3& service &Destination service \\
+\hline
+4& flag &Status flag of the connection \\
+\hline
+5& src bytes& Bytes sent from source to destination\\
+\hline	
+6& dst bytes& Bytes sent from destination to source\\
+\hline
+7& land& 1 if the connection is to/from the same  port/host;0 otherwise\\
+%&    &   \\
+\hline
+8& wrong fragment & no. of wrong fragments \\
+\hline
+9& urgent & Number of urgent packets \\
+\hline
+10& hot &Number of “hot” indicators \\
+\hline
+11& failed logins & Number of failed logins\\
+\hline
+12& logged in& 1 if successfully logged in; 0 otherwise\\
+\hline
+13& \# compromised& Number of compromised conditions\\
+\hline
+14& root shell &1 if root shell is obtained; 0 otherwise\\
+\hline
+15& su attempted &1 if “su root” command attempted; 0 otherwise \\
+\hline
+16& root & Number of “root” accesses\\
+\hline
+17& file creations & Number of file creation operations\\
+\hline
+18& shells &Number of shell prompts\\
+\hline
+19& access files & Number of operations on access control files\\
+\hline
+20& outbound cmds & Number of outbound commands in a ftp session\\
+\hline
+21& is hot login & 1 if login belongs to the “hot” list; 0 otherwise\\
+\hline
+22& is guest login & 1 if the login is the “guest” login; 0 otherwise\\
+\hline
+23&Count &no. of connections to the same host as the current connection \\
+& &  in the past two seconds. \\
+\hline
+24& srv count & Number of connections to the same service as the current\\
+& &    connection in the past two seconds\\
+\hline
+25& serror rate & \% of connections that have “SYN” errors\\
+\hline
+26& srv serror rate & \%of connections that have “SYN” errors\\
+\hline
+27&rerror rate & \% of connections that have REJ errors \\
+\hline
+28& srv rerror rate & \% of connections that have REJ errors\\
+\hline
+29& same srv rate & \% of connections to the same service\\
+\hline
+30& diff srv rate &\% of connections to different services\\
+\hline
+31& srv diff host rate & \% of connections to different hosts\\
+\hline
+32& dst host count& Count of connection having same destination host\\
+\hline	
+33& dst host srv count& Count of connections having the same destination host and \\
+& &  using the same service\\
+\hline
+34& dst host same srv rate& \% of connections have same destination host and using same\\
+& &   service\\
+\hline
+35&dst host diff srv rate& \% of different services on the current host\\
+%& & \\
+\hline
+36& dst host same src port rate& \% of connections to the current host having the same src port\\
+%& &   \\
+\hline
+37&dst host srv diff host rate& \% of connections to the same service coming from different hosts\\
+%& &   \\
+\hline
+38& dst host serror rate & \% of connections to current  host having S0 error\\
+%& & \\
+\hline
+39& dst host srv serror rate& \% of connections to the current host and specified service that \\
+& &  have an S0 error\\
+\hline
+40&dst host rerror rate& \% of connections to the current host that  have an  RST error\\
+%& &   \\
+\hline
+41& dst host srv rerror rate & \% of connections to the current host and specified service that\\
+ & &   have an RST error\\
+\hline
+
+%12& logged in & 1 if successfully logged in; 0 otherwise
+%\hline
+
+
+
+\end{longtable}
+\end{center}
+
+\chapter{Methodology}
+
+\section{Normalization}
+Min-max normalization is used in the proposed system.Min-Max normalization transforms value from X to Y in range [A, B] i.e [0,1].
+The determination takes place by using formula mentioned below in eqn ${(1)}$.\\
+
+$Y=\frac{\left(X-minimum \thinspace \thinspace value\thinspace  of\thinspace X\right)}{\left(maximum\thinspace \thinspace value \thinspace  of\thinspace X-minimum \thinspace value \thinspace of \thinspace X\right)}\times\left(B-A\right)+A $ $\thinspace \thinspace \thinspace   $   $......{(1)}$
+
+\section{MCA}
+
+MCA approach is developed based on triangle area map technique, which is used to present the correlations within network traffic data.
+These correlations are extracted from the statistical properties (e.g.the number of data bytes from source to destination,
+number of wrong fragments and the number of connections to the same host as the current connection in the past two seconds etc.)
+of the network traffic.The traffic of denial of service attack behaves differently from the legitimate network traffic and network traffic behavior
+is reflected through statistical properties. To well describe statistical properties, multivariate correlation analysis (MCA) information is used.
+The MCA employs the triangle area method to extract the geometrical correlation among features within traffic record.
+In MCA triangle area technique is used to extract the multivariate correlations.\\
+
+Given kddcup99 dataset $ X=\left\{x_{1} ,x_{2},....,x_{n}\right\}$ , where $ x_{i}=\left[ f_1^i \thinspace \thinspace  f_2^i .......f_m^i \right],\left( 1\leq i \leq n\right) $
+represents the $ i^{th} $ m-dimentional traffic record. we apply triangular area method to extract the geometrical correlation between the $j^{th}$ and $ k^{th} $ features
+in the vector $x_{i}$ .\\
+
+The triangle area{(TA)} is calculated by using formula which consists of $ j^{th}$ and $ k^{th}$ feature:\\
+
+ $TA_{j,k}^{i}=\frac{\left(\mid f_j^i\mid\times \mid f_k^i\mid\right)  }{2}....{(2)}$\\
+
+ where $ 1\leq i \leq n, \thinspace 1\leq j \leq m,\thinspace 1\leq k \leq m $ , and $ j\neq k $.To make complete analysis , all possible permutations
+ of any two distinct features in the vector $x_{i}$ are extracted and corresponding triangle areas are determined.
+ A TAM is constructed and all the triangle areas are arranged in map with respect to their indexes.For example,the $ TA_{j,k}^{i} $ is positioned on the
+ $j^{th}$ row and $k^{th}$ column of the map $ TAM^i$ , which has a size of $ m\times m $ .The values of the elements on the diagonal of
+ the map are set to zeros $ \left( Tr_{j,k}^i = 0 ,if j=k \right)$ because we only care about the correlation between each pair of
+ distinct features.For the nondiagonal elements $ TA_{j,k}^{i} $ and $TA_{k,j}^{i} $  where $ j\neq k $ , they represents the areas
+ of the same triangle.This infers that the values of $ TA_{j,k}^{i} $ and $TA_{k,j}^{i} $ are actually equal.Hence the $ TAM^i $\
+ is symmetric matrix having elements of zero on the main diagonal.\\
+
+when comparing two TAMs, we can imagine them as two images symmetric along their main diagonals.Any differences ,identified on the upper triangles
+of the images, can be found on their lower triangles as well.Therefore, to perform a quick comparison of the two TAMs, we can choose either
+the upper triangles or lower traingles of the TAMs only.we considered the lower triangles of the TAMs in the remaining computation.
+ Then lower triangles of the $ TAM^i $ is converted into new correlation vector is denoted in equation ${(3)}$ .\\
+
+$TAM_{lower}^{i}=\left[TA_{2,1}^{i} \thinspace \thinspace TA_{3,1}^{i}.....TA_{m,1}^{i}\thinspace \thinspace TA_{3,2}^{i} \thinspace \thinspace \thinspace \thinspace TA_{4,2}^{i} .....TA_{m,2}^{i} ..... TA_{m,m-1}^{i}\right]....(3) $ \\
+
+
+
+
+$\overline{{TAM_{lower}^i}}=\frac{1}{x}\times\sum_{i=1}^x {TAM_{lower}^i}$.....{(4)}\\
+
+
+After lower triangular matrix is determined then covariance matrix is calculated using mathematical equation {(5)}.Then Mahalnobis distance is determined
+using the equation {(7)}.All other mathematical concepts related to covariance matrix is used from[2].\\
+%\begin{align}
+
+ %TAMlower=\sum_{i=1}^{x} TAM^i_{lower} {TAMlower}
+
+
+ \[
+ { covariance}=     \begin{bmatrix}
+     \sigma\left(TA_{2,1}\thinspace , \thinspace TA_{2,1}\right)& \cdots & \sigma\left(TA_{2,1}\thinspace , \thinspace TA_{n,n-1}\right) \\
+   %     \vdots &                            \ddots                                    & \vdots \\
+
+     \sigma\left(TA_{3,1}\thinspace , \thinspace TA_{2,1}\right)& \cdots & \sigma\left(TA_{3,1}\thinspace , \thinspace TA_{n,n-1}\right) \\
+
+      \vdots &                            \ddots                                    & \vdots \\
+
+     \sigma\left(TA_{n,n-1}\thinspace , \thinspace TA_{2,1}\right) & \cdots & \sigma\left(TA_{n,n-1}\thinspace , \thinspace TA_{n,n-1}\right)
+     \end{bmatrix}{ .....{(5)}}
+ \]
+\\
+
+The covariance between two arbitrary elements in the lower triangle of TAM is defined below in equation {(6)}\\
+
+$ \sigma\left( Tr_{j,k}\thinspace , Tr_{l,v} \right)=\frac{1}{x-1}\sum_{i=1}^x \thinspace \left( Tr_{j,k}^i -\mu Tr_{j,k}\right) \times \left( Tr_{l,v}^i -\mu Tr_{l,v}\right) $ ......{(6)}\\
+\\
+$ \mu Tr_{j,k} \thinspace \thinspace and \thinspace \thinspace \mu Tr_{l,v} $ is the mean of the $ \left(j,k\right)^{th} $ elements and  the $ \left(j,k\right)^{th} $ elements of the TAMs over
+x traffic records respectively.\\
+
+$MD^{i}=\sqrt{\frac{\left(TAM_{lower}^i-\overline{TAM_{lower}^i}\right)T \thinspace \times \thinspace TAM_{lower}^i-\overline{TAM_{lower}^i}}{covariance}}$  .....{(7)}
+%\end{align}
+
+
+\section{SVM}
+The support vector machine is used for the classification of traffic. The support vector machine separates data points into two classes. By using SVM technique Attack or normal traffic is determined. It consists of separating hyperplane which is used to separate data. The points nearest to separating hyperplane are called as support vectors. In this need to maximize the distance between the separating hyperplane and Support Vectors. The figure 7.1 shows SVM overview.
+Support vector machine is first suggested by vapnik for classification[29].
+
+\begin{figure}[h!]
+\centering
+ %Requires \usepackage{graphicx}
+\includegraphics[width=0.6\textwidth]{svm}\\
+\caption{ SVM overview }
+\end{figure}
+\newpage
+
+\subsection{SMO}
+
+Sequential minimal optimization (SMO) is an algorithm for solving the quadratic programming (QP) problem that arises during the training of support vector machines. It was invented by John Platt in 1998 at Microsoft Research. SMO is widely used for training support vector machines and is implemented by the popular LIBSVM tool. The publication of the SMO algorithm in 1998 has generated a lot of excitement in the SVM community, as previously available methods for SVM training were much more complex.\\
+
+\begin{figure}[h!]
+\centering
+ %Requires \usepackage{graphicx}
+\includegraphics[width=0.8\textwidth]{smo}\\
+\caption{ SMO overview }
+\end{figure}
+
+In above figure, The horizontal thin line at every step represents the training set, while the thick boxes represent the Lagrange multipliers being optimized at that step.
+A given group of three lines corresponds to three training iterations, with the first iteration at the top.\\
+
+
+Unlike previous SVM learning algorithms, which use numerical quadratic programming (QP) as an inner loop, SMO uses an analytic QP step. Because SMO spends most of its time evaluating the decision function, rather than performing QP, it can exploit data sets which contain a substantial number of zero elements. Here, these data sets are called sparse. SMO does particularly well for sparse data sets, with either binary or non-binary input data[30].\\
+\\
+SMO chooses to solve the smallest possible optimization problem at every step. For the standard SVM QP problem, the smallest possible optimization problem involves two Lagrange multipliers because the Lagrange multipliers must obey a linear equality constraint. At every step, SMO chooses two Lagrange multipliers to jointly optimize, finds the optimal values for these multipliers, and updates the SVM to reflect the new optimal values[30].\\
+
+
+
+
+The algorithm proceeds as follows:
+\begin{enumerate}
+\item 	Find a Lagrange multiplier $\alpha{1}$  that violates the Karush–Kuhn–Tucker (KKT) conditions for the optimization problem.
+\item Pick a second multiplier $\alpha{2}$   and optimize the pair $\left(\alpha{1},\alpha{2}\right)$ .
+\item Repeat steps 1 and 2 until convergence.
+\end{enumerate}
+
+When all the Lagrange multipliers satisfy the KKT conditions (within a user-defined tolerance), the problem has been solved. Although this algorithm is guaranteed to converge, heuristics are used to choose the pair of multipliers so as to accelerate the rate of convergence. This is critical for large data sets since there are $ n\times\left(n-1\right)$ possible choices for  $\alpha{i}$ and $\alpha{j}$.
+
+%%%%%%%%%%  CHAPTER 6 %%%%%%%%%%
+\chapter{System design}
+%
+\section{Requirement specification and analysis}
+
+Software required:
+\begin{itemize}
+\item OS-windows 7
+\item language-Java
+\item Netbeans IDE 8.0
+
+\end{itemize}
+Hardware required:
+\begin{itemize}
+\item  Dell vostro core 2 laptop
+\end{itemize}
+
+
+\section{Data flow diagrams}
+
+ \begin{figure}[h!]
+\centering
+  % Requires \usepackage{graphicx}
+\includegraphics[width=0.8\textwidth]{p11}
+\caption{DFD Level 0}
+\end{figure}
+\newpage
+ \begin{figure}[h!]
+\centering
+  % Requires \usepackage{graphicx}
+\includegraphics[width=0.7\textwidth]{data1}
+\caption{DFD Level 1}
+\end{figure}
+
+
+ \begin{figure}[h!]
+\centering
+  % Requires \usepackage{graphicx}
+\includegraphics[width=1.0\textwidth]{data2}
+\caption{DFD Level 2}
+\end{figure}
+
+\newpage
+\section{Sequence diagram}
+
+ \begin{figure}[h!]
+\centering
+  % Requires \usepackage{graphicx}
+\includegraphics[width=1.0\textwidth]{s11}
+\caption{Sequence diagram}
+\end{figure}
+
+\newpage
+\section{Activity diagram}
+
+ \begin{figure}[h!]
+\centering
+  % Requires \usepackage{graphicx}
+\includegraphics[width=0.6\textwidth]{a111}
+\caption{Activity Diagram}
+\end{figure}
+
+\section{Deployment diagram}
+ \begin{figure}[h!]
+\centering
+  % Requires \usepackage{graphicx}
+\includegraphics[width=0.7\textwidth]{dep}
+\caption{Deployment diagram }
+\end{figure}
+
+\newpage
+\section{Class diagram}
+\begin{figure}[h!]
+\centering
+  % Requires \usepackage{graphicx}
+\includegraphics[width=0.7\textwidth]{class}
+\caption{Class diagram}
+\end{figure}
+
+
+\section{Use case Diagram}
+ \begin{figure}[h!]
+\centering
+  % Requires \usepackage{graphicx}
+\includegraphics[width=0.8\textwidth]{usecase}
+\caption{Use case diagram}
+\end{figure}
+
+
+
+
+\chapter{Implementation}
+%Modules:\\
+% In the implementation of the system, Java language is used for development. So here four Modules as defined:
+%\begin{enumerate}
+%\item Input dataset
+%\item Normalization
+%\item Normal profile generation
+%\item Classification
+%\end{enumerate}
+
+\section{Algorithm}
+
+\begin{enumerate}
+
+\item First taking kddcup99 dataset as input.
+\item selection of features.
+\item Normalize features of dataset by min-max normalization(described in methodology chapter equation{(1)}).
+\item Determine triangular area among network features using  $TA_{j,k}^{i}=\frac{\left(\mid f_j^i\mid\times \mid f_k^i\mid\right)  }{2}$
+     where j and k are two distinct features of $ i^{th} $ m-dimentional traffic record
+\item Indexing All triangle areas with respect to their indexes i.e TAM matrix.
+\item Using only lower triangular matrix for generating covariance \& mahalnobis distance because TAM is symmetric matrix.
+\item Generating the covariance matrix and mahalnobis distance (using equations{(5),(6)\& (7)} from methodology chapter).
+\item Generate SMO SVM model.
+\item Testing dataset file selection
+\item classification of dos attack type record from normal records using support vector machine(SVM) (described in section 7.3).
+
+\end{enumerate}
+
+\newpage
+\section{Snapshots}
+
+ \begin{figure}[h!]
+\centering
+  % Requires \usepackage{graphicx}
+\includegraphics[width=0.8\textwidth]{2}
+\caption{Login page }
+\end{figure}
+
+ \begin{figure}[h!]
+\centering
+  % Requires \usepackage{graphicx}
+\includegraphics[width=0.8\textwidth]{3}
+\caption{Main page after login}
+\end{figure}
+
+
+ \begin{figure}[h!]
+\centering
+  % Requires \usepackage{graphicx}
+\includegraphics[width=0.8\textwidth]{4}
+\caption{Browse kdd dataset file }
+\end{figure}
+
+
+ \begin{figure}[h!]
+\centering
+  % Requires \usepackage{graphicx}
+\includegraphics[width=0.8\textwidth]{5}
+\caption{Opening dataset file }
+\end{figure}
+
+
+ \begin{figure}[h!]
+\centering
+  % Requires \usepackage{graphicx}
+\includegraphics[width=0.8\textwidth]{6}
+\caption{Dataset file information }
+\end{figure}
+
+
+ \begin{figure}[h!]
+\centering
+  % Requires \usepackage{graphicx}
+\includegraphics[width=0.8\textwidth]{7}
+\caption{Loading of dataset file }
+\end{figure}
+
+
+ \begin{figure}[h!]
+\centering
+  % Requires \usepackage{graphicx}
+\includegraphics[width=0.8\textwidth]{8}
+\caption{selected features of dataset }
+\end{figure}
+
+
+ \begin{figure}[h!]
+\centering
+  % Requires \usepackage{graphicx}
+\includegraphics[width=0.8\textwidth]{9}
+\caption{Normalized dataset}
+\end{figure}
+
+
+ \begin{figure}[h!]
+\centering
+  % Requires \usepackage{graphicx}
+\includegraphics[width=0.8\textwidth]{10}
+\caption{Triangular area map generation and other mathematical computations}
+\end{figure}
+
+
+ \begin{figure}[h!]
+\centering
+  % Requires \usepackage{graphicx}
+\includegraphics[width=0.8\textwidth]{11}
+\caption{completed Triangular area map generation and other mathematical measures}
+\end{figure}
+
+
+ \begin{figure}[h!]
+\centering
+  % Requires \usepackage{graphicx}
+\includegraphics[width=0.8\textwidth]{12}
+\caption{TAM Matrix}
+\end{figure}
+
+ \begin{figure}[h!]
+\centering
+  % Requires \usepackage{graphicx}
+\includegraphics[width=0.8\textwidth]{13}
+\caption{Opening testing dataset}
+\end{figure}
+
+ \begin{figure}[h!]
+\centering
+  % Requires \usepackage{graphicx}
+\includegraphics[width=0.8\textwidth]{14}
+\caption{selected testing file}
+\end{figure}
+
+ \begin{figure}[h!]
+\centering
+  % Requires \usepackage{graphicx}
+\includegraphics[width=0.8\textwidth]{15}
+\caption{Attack detection of SVM completed}
+\end{figure}
+
+ \begin{figure}[h!]
+\centering
+  % Requires \usepackage{graphicx}
+\includegraphics[width=0.8\textwidth]{16}
+\caption{classification result of  SVM}
+\end{figure}
+
+
+ \begin{figure}[h!]
+\centering
+  % Requires \usepackage{graphicx}
+\includegraphics[width=0.8\textwidth]{17}
+\caption{Attack detection of MLP completed}
+\end{figure}
+
+
+ \begin{figure}[h!]
+\centering
+  % Requires \usepackage{graphicx}
+\includegraphics[width=0.8\textwidth]{18}
+\caption{classification result of MLP}
+\end{figure}
+
+
+
+ \begin{figure}[h!]
+\centering
+  % Requires \usepackage{graphicx}
+\includegraphics[width=0.8\textwidth]{19}
+\caption{Attack detection of ZeroR completed}
+\end{figure}
+
+
+\newpage
+\begin{figure}[h!]
+\centering
+  % Requires \usepackage{graphicx}
+\includegraphics[width=0.8\textwidth]{zero}
+\caption{classification result of ZeroR}
+\end{figure}
+
+
+ \begin{figure}[h!]
+\centering
+  % Requires \usepackage{graphicx}
+\includegraphics[width=0.8\textwidth]{21}
+\caption{Performance Measure Frame}
+\end{figure}
+
+%%%%%%%%%%  CHAPTER 7 %%%%%%%%%%
+\chapter{Results and Evaluation}
+
+\textbf{Evaluation measures:}\\
+During the evaluation, some instances of the 10 percent labeled data of KDD Cup 99 dataset is used, where three types of legitimate traffic i.e
+TCP,UDP and ICMP traffic and six types of DoS attacks i.e Teardrop,Smurf,Pod,Neptune,Land and Back attacks are available.\\
+\\
+To estimate the performance of the system,three important formulae are used i.e accuracy,false positive rate and detection rate.
+ To estimate these formulae we need false negative (FN), True positive (TP), false positive (FP), True negative (TN) rate measures.
+  These are described below: \\
+\\
+TP- Attack occurs and alarm generates.\\
+TN- No attack occurs and no alarm generates.\\
+FP- No attack occurs but alarm generates.\\
+FN- Attack occurs but alarm not generates.\\
+
+The accuracy,detection rate and false positive rate is determined using formulae described below[34][35].\\
+
+Accuracy = $\frac{tp+tn}{tp+fp+tn+fn}\times100$
+\\
+
+Detection Rate(DR) = $\frac{tp}{tp+tn}\times100$
+\\
+
+False Positive Rate(FPR) = $\frac{fp}{fp+tn}\times100$
+\\
+
+
+
+
+Accuracy is determined for 100,200,300,400,500 instances of kddcup99 dataset and also for five sets of
+different 100 instances of the kddcup99 dataset for training.we used 123 instance testing dataset for evaluation.\\
+
+The comparative accuracy graph of 100,200,300,400,500 instances of dataset is shown in fig. 10.3 And Table 10.1 describes accuracy results
+of SVM, MLP, zeroR for 100,200,300,400,500 instances of kddcup99 dataset.
+
+\begin{table}[h!]
+%% increase table row spacing, adjust to taste
+%\renewcommand{\arraystretch}{1.5}
+% if using array.sty, it might be a good idea to tweak the value of
+% \extrarowheight as needed to properly center the text within the cells
+
+
+
+\caption{Accuracy for different classifiers}
+\label{Accuracy}
+\centering
+
+
+%% Some packages, such as MDW tools, offer better commands for making tables
+%% than the plain LaTeX2e tabular which is used here.
+
+\begin{tabular}{|c|c|c|c|}
+\hline
+Instances &  SVM &   MLP &   ZeroR\\
+\hline
+100  &99.18\% &   87.80\%&   50.40\%	 \\
+\hline
+200  &98.37\%&   85.36\%&   53.65\% \\
+\hline
+300 	&  99.18\%&  86.17\% &   50.40\% \\
+\hline	
+400 	&  99.18\% &  82.92\% &   51.21\% \\
+\hline
+500  &  99.18\% &  78.04\% &   50.40\% \\
+\hline
+\hline
+\end{tabular}
+\end{table}
+
+Table 10.2 shows the accuracy for different classifiers using different 100 instances.The results of SVM are higher than MLP and Zero-R for all five
+sets of 100 instance dataset.
+
+\begin{table}[h!]
+%% increase table row spacing, adjust to taste
+%\renewcommand{\arraystretch}{1.5}
+% if using array.sty, it might be a good idea to tweak the value of
+% \extrarowheight as needed to properly center the text within the cells
+
+
+
+\caption{Accuracy for different classifiers using different 100 instances}
+\label{Accuracy}
+\centering
+
+
+%% Some packages, such as MDW tools, offer better commands for making tables
+%% than the plain LaTeX2e tabular which is used here.
+
+\begin{tabular}{|c|c|c|c|}
+\hline
+100 Instances &  SVM &   MLP &   ZeroR\\
+\hline
+Dataset 1  &98.37\% &   76.42\% &   54.47\%	 \\
+\hline
+Dataset 2 &98.37\%&   89.43\% &   50.40\% \\
+\hline
+Dataset 3	&  98.37\%&  85.36\% &   61.78\% \\
+\hline	
+Dataset 4&  99.18 \%&  81.30\% &   63.41\% \\
+\hline
+Dataset 5 &  96.74\% &  69.91 \%&   56.91\% \\
+\hline
+\hline
+\end{tabular}
+\end{table}
+
+The figure 10.1 and 10.2 shows accuracy and time chart of SVM,MLP and ZeroR for 100 instance dataset respectively.
+The figure 10.5 and 10.6 shows detection rate and false positive rate of SVM,MLP and ZeroR for 100 instance dataset respectively.\\
+
+ \begin{figure}[h!]
+\centering
+  % Requires \usepackage{graphicx}
+\includegraphics[width=0.9\textwidth]{E1}
+\caption{Accuracy chart for SVM, MLP and ZeroR}
+\end{figure}
+
+ \begin{figure}[h!]
+\centering
+  % Requires \usepackage{graphicx}
+\includegraphics[width=0.9\textwidth]{E2}
+\caption{Time chart for SVM, MLP and ZeroR}
+\end{figure}
+
+ \begin{figure}[h!]
+\centering
+  % Requires \usepackage{graphicx}
+\includegraphics[width=1.0\textwidth]{E3}
+\caption{comparative accuracy using different datasets for SVM, MLP and ZeroR}
+\end{figure}
+
+ \begin{figure}[h!]
+\centering
+  % Requires \usepackage{graphicx}
+\includegraphics[width=1.0\textwidth]{E4}
+\caption{comparative time using different datasets for SVM, MLP and ZeroR}
+\end{figure}
+
+
+
+ \begin{figure}[h!]
+\centering
+  % Requires \usepackage{graphicx}
+\includegraphics[width=0.9\textwidth]{E5}
+\caption{Detection rate of SVM, MLP and ZeroR}
+\end{figure}
+
+ \begin{figure}[h!]
+\centering
+  % Requires \usepackage{graphicx}
+\includegraphics[width=0.9\textwidth]{E6}
+\caption{False positive rate SVM, MLP and ZeroR}
+\end{figure}
+
+%%%%%%%%%%  CHAPTER 8 %%%%%%%%%%
+\chapter{Conclusion}
+%
+The triangle area technique extracts correlations between two distinct features within traffic records.
+ Therefore proposed system uses triangle area based multivariate correlation technique.
+  Also it uses support vector machine classifier which classifies attacks from legitimate network traffic.
+  By using the triangle area technique speed up the process of multivariate correlation analysis.
+   This method produces better performance in terms of speed and accuracy. SMO function of support vector machine is used for the classification of attack and normal records.
+   It gives more than 95\% accuracy with less time for execution. SVM gives maximum accuracy as compared to MLP and zeroR.
+   In future I will use most sophisticated techniques for classification and  use real time data for this purpose.
+
+\chapter{List of Publications}
+%%%%%%%%
+%\section{Appendix A: List of Abbreviations}
+
+
+%Table 12.1 has list of abbreviation used in this report.
+
+%\begin{table}[h!]
+%% increase table row spacing, adjust to taste
+%\renewcommand{\arraystretch}{1.3}
+% if using array.sty, it might be a good idea to tweak the value of
+% \extrarowheight as needed to properly center the text within the cells
+
+
+
+%\caption{List of abbreviations }
+%\label{table_for_description}
+%\centering
+
+
+%% Some packages, such as MDW tools, offer better commands for making tables
+%% than the plain LaTeX2e tabular which is used here.
+
+%\begin{tabular}{|c|c|}
+%\hline
+%Abbr..&	Meaning\\
+%\hline
+%DOS &Denial of service	 \\
+%\hline
+%TAM &Triangle area map\\
+%\hline
+%MCA	&Multivariate correlation analysis\\
+%\hline	
+%SVM	&support vector machine\\
+%\hline
+%DDos &Distributed denial of service\\
+%\hline
+%IDS & Intrusion detection system \\
+%\hline
+%SMO & sequential minimal optimization\\
+%\hline
+%MLP & Multilayer Perceptron\\
+%\hline
+%DR & Detection rate\\
+%\hline
+%FPR & false positive rate\\
+%\hline
+%\hline
+%\end{tabular}
+%\end{table}
+
+%%%%%%%%%
+
+%\section{Appendix B: Papers Published with this Dissertation}
+
+\begin{itemize}
+\item 	 Prajakta solankar et.al. “Denial of Service Attack and Classification Techniques for Attack Detection”,(IJCSIT) International Journal of Computer Science and Information Technologies, Vol.6,2015,1096-1099,ISSN:0975-9646.
+
+\item    Subhash Pingale, Ranjeetsingh Parihar and Prajakta Solankar "Multivariate Correlation Information Based
+SVM Method for Dos Attack Detection", International Journal of Innovative Research in Computer and Communication Engineering,vol.4,Issue3,March 2016.ISSN(Online): 2320-9801,ISSN (Print) : 2320-9798.
+
+\item   Subhash Pingale, Ranjeetsingh Parihar and Prajakta Solankar "Denial of Service Attack Detection Using Multivariate Correlation Information and Support Vector Machine Classification", International Journal of Computer Sciences and Engineering,volume-4,Issue-3,E-ISSN: 2347-2693.
+\end{itemize}
+
+%%%%%%%%%% BIBLIOGRAPHY %%%%%%%%%%
+ \begin{thebibliography}{}
+  \bibitem{one}Subramani rao and Sridhar rao , “Denial of Service attacks and mitigation techniques: Real time implementation with detailed analysis” © 2011 The SANS Institute
+
+\bibitem{two}Zhiyuan Tan, Aruna Jamdagni , Xiangjian He ,Priyadarsi Nanda and Ren Ping Liu , “A System for Denial-of-Service Attack Detection Based on Multivariate Correlation Analysis” IEEE transaction on parallel and distributed systems, vol. 25, no. 2, February 2014.
+ \bibitem{three}Zhiyuan Tan “Detection of Denial-of-Service Attacks Based on Computer Vision Techniques” thesis. Copyright by Zhiyuan Tan, 2013
+\bibitem{four}Abhaya, Kaushal Kumar, Ranjeeta Jha and Sumaiya Afroz, “Data Mining Techniques for Intrusion Detection: A Review” International Journal of Advanced Research in Computer and Communication Engineering Vol. 3, Issue 6, June 2014.
+
+\bibitem{five}Mohammadreza Ektefa, Sara Memar, Fatimah Sidi and Lilly Suriani Affendey, “Intrusion Detection Using Data Mining Techniques” 978-1-4244-5651-2/10/ ©2010 IEEE.
+
+\bibitem{six}Chitra Nasa ans Suman "Evaluation of Different Classification Techniques for WEB Data",International Journal of Computer Applications,Volume 52– No.9,0975 – 8887, August 2012
+
+\bibitem{seven}Aswani Kumar ,“An Improved Packet size Entropy based DoS Attack Detection Scheme” Thesis report National Institute of Technology Rourkela May 31 2013 .
+
+\bibitem{eight} Dhruv A. Patel, Prof. Hasmukh Patel ,“ Detection and Mitigation of DDOS Attack against”  © 2014 IJEDR | Volume 2, Issue 2 | ISSN: 2321-9939
+
+\bibitem{nine}P. Garca-Teodoro, J. Daz-Verdejo, G. Maci-Fernndez, and E. Vzquez, “Anomaly-Based Network Intrusion Detection: Techniques, Systems and Challenges,” Computers and Security, vol. 28, pp. 18-28, 2009.
+
+\bibitem{ten}Khaled Labib and V. Rao Vemuri "Detecting Denial-of-Service And Network Probe Attacks Using Principal
+Component Analysis",Department of Applied Science University of California, Davis U.S.A.
+
+\bibitem{eleven}Ajayi Adebowale, Idowu S.A and Anyaehie Amarachi A.” Comparative Study of Selected Data Mining Algorithms Used For Intrusion Detection” International Journal of Soft Computing and Engineering (IJSCE) ISSN: 2231-2307, Volume-3, Issue-3, July 2013.
+
+\bibitem{twelve} Meghana Solanki, Vidya Dhamdhere , “Intrusion Detection System by using K-Means clustering, C 4.5, FNN, SVM classifier” International Journal of Emerging Trends and Technology in Computer Science (IJETTCS) Volume 3, Issue 6, November-December 2014 ,ISSN 2278-6856.
+\bibitem{thirteen}Christos Douligeris and Aikaterini Mitrokotsa “DDoS attacks and defense mechanisms: classification and state-of-the-art” Computer Networks 44 (2004) 643–666.
+
+\bibitem{fourteen}Jaehak Yu, Hansung Lee, Myung-Sup Kim , Daihee Park  ,“Traffic flooding attack detection with SNMP MIB using SVM” Computer Communications 31 (2008) 4212–4219.
+
+
+\bibitem{fifteen}Arman Tajbakhsh, Mohammad Rahmati, Abdolreza Mirzaei  ,“Intrusion detection using fuzzy association rules” Applied Soft Computing 9 (2009) 462–469
+
+
+\bibitem{sixteen}Aruna Jamdagni , Zhiyuan Tan , Xiangjian He , Priyadarsi Nanda , Ren Ping Liu , “RePIDS: A multi tier Real-time Payload-based Intrusion Detection System” Computer Networks 57 (2013) 811–824
+
+\bibitem{seventeen}Dimitris Gavrilis, Evangelos Dermatas “Real-time detection of distributed denial-of-service attacks using RBF networks and statistical features” Computer Networks 48 (2005) 235–245
+
+
+ \bibitem{eighteen}Yinhui Li , Jingbo Xia, Silan Zhang , Jiakai Yan, Xiaochuan Ai , Kuobin Dai “An efficient intrusion detection system based on support vector machines and gradually feature removal method” Expert Systems with Applications 39 (2012) 424–430.
+
+\bibitem{nineteen}Shuyuan Jin,Danial So Yeung and Xizhao “Network intrusion detection in covariance feature space” Pattern Recognition 40 (2007) 2185-2197.
+
+\bibitem{twenty}S. Yu, W. Zhou, W. Jia, S. Guo, Y. Xiang, and F. Tang, “Discriminating DDoS Attacks from Flash Crowds Using Flow Correlation Coefficient,” IEEE Trans. Parallel and Distributed Systems, vol. 23, no. 6, pp. 1073-1080, June 2012.
+
+\bibitem{twenty one}Surat Srinoy,Witcha Chimphlee and Siriporn Chimphlee “A Fusion of ICA and SVM for Detection Computer Attacks” Proceeding of the 5th WSEAS International Conference on Applied Computer Science,Hangzhou,china,April 16-18, 2006(pp987991).
+
+\bibitem{twenty two}Weiming Hu , Wei Hu, and Steve Maybank , “AdaBoost-Based Algorithm for Network Intrusion Detection” IEEE transactions on systems, man, and cybernetics—part b: cybernetics, vol. 38, no. 2, april 2008.
+
+\bibitem{twenty three}Wei Wang , Xiangliang Zhang , Sylvain Gombault , and Svein J. Knapskog , “Attribute Normalization in Network Intrusion Detection” 2009 10th International Symposium on Pervasive Systems, Algorithms, and Networks.
+
+\bibitem{twenty four}Chih-Fong Tsai, Chia-Ying Lin, “A triangle area based nearest neighbors approach to intrusion detection” Pattern Recognition, vol.43, pp. 222 – 229, (2010).
+
+\bibitem{twenty five}Zhiyuan Tan1, Aruna Jamdagni, Xiangjian He, Priyadarsi Nanda, and Ren Ping Liu,” Multivariate Correlation Analysis Technique Based on Euclidean Distance Map for Network Traffic Characterization” Research Centre for Innovation in IT Services and Applications (iNEXT)
+
+\bibitem{twenty six}Shuyuan Jin, Daniel S. Yeung ,“A Covariance Analysis Model for DDoS Attack Detection” 2004 IEEE
+
+\bibitem{twenty seven}Gloria C.Y. Tsang, Patrick P.K. Chan, Daneil S. Yeung, Eric C.C. Tsang “Denial of  service  detection by  support vector machines and radial-basis function neural network” 2004 IEEE
+
+
+\bibitem{twenty eight}Venkata Suneetha Takkellapati , G.V.S.N.R.V Prasad,” Network Intrusion Detection system based on Feature Selection and Triangle area Support Vector Machine” International Journal of Engineering Trends and Technology- Volume3Issue4- 2012
+
+\bibitem{twenty nine}Wun-Hwa Chen, Sheng-Hsun Hsu, Hwang-Pin Shen “Application of SVM and ANN for intrusion detection” Computers an Operations Research 32 (2005) 2617–2634.
+\bibitem{thirty}John C. Platt "Fast Training of Support Vector Machines using Sequential Minimal Optimization",Microsoft Research,2000.
+\bibitem{thirty one}Purva Adlakha and Prof. Priti Subramanium "Various Approaches for Detecting Attacks in Intrusion Detection System",International Journal of Computer Science and Mobile Computing,IJCSMC, Vol. 2, Issue. 3, pg.1 – 3 , March 2013.
+\bibitem{thirty two} H. Güneş Kayacık, A. Nur Zincir-Heywood and Malcolm I. Heywood,” Selecting Features for Intrusion Detection:A Feature Relevance Analysis on KDD 99 Intrusion Detection Datasets” Appendix 1. Description of KDD 99 Intrusion Detection Dataset Features.
+\bibitem{thirty three} Ms Pooja Bhoria and Dr.Kanwal Garg,"Determining feature set of DOS attacks"International Journal of Advanced Research in Computer Science and Software Engineering,ISSN: 2277 128X Volume 3, Issue 5, May 2013
+\bibitem{thirty four} Fatin Norsyafawati Mohd Sabri and Norita Md.Norwawi  et.al “Identifying False Alarm Rates for Intrusion Detection System with Data Mining” IJCSNS International Journal of Computer Science and Network Security, vol.11 No.4, April 2011.
+\bibitem{thirty five}A. M. Riad and Ibrahim Elhenawy “visualize network anomaly detection by using k-means clustering algorithm” International Journal of Computer Networks and Communications (IJCNC) Vol.5, No.5, September 2013.
+
+\end{thebibliography}
+
+\end{document}
+
+
+
+
